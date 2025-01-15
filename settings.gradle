@@ -1,0 +1,8 @@
+rootProject.name = 'booking-system'
+include 'authentication-service'
+include 'search-service'
+include 'booking-service'
+include 'notification-service'
+include 'payment-service'
+include 'report-service'
+

@@ -1,0 +1,9 @@
+plugins {
+    id 'com.palantir.docker' version '0.36.0'
+}
+
+docker {
+    name "booking-system/report-service:${version}"
+    files tasks.bootJar.outputs.files
+    buildArgs(['JAR_FILE': tasks.bootJar.archiveFileName.get()])
+}

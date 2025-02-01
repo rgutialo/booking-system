@@ -18,6 +18,6 @@ public class PaymentController {
 
     @GetMapping
     public ResponseEntity<String> sayHello() {
-        return ResponseEntity.ok("Hello World from Notification. Random result: " + randomGenerator.generateRandomNumber());
+        return ResponseEntity.ok("Hello World from Payments. Random result: " + randomGenerator.generateRandomNumber());
     }
 }

@@ -3,5 +3,5 @@ ARG JAR_FILE=build/libs/*.jar
 
 WORKDIR /app
 COPY ${JAR_FILE} app.jar
-EXPOSE 8084
+EXPOSE 8081
 ENTRYPOINT ["java", "-jar", "app.jar"]

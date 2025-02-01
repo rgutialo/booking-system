@@ -18,6 +18,6 @@ public class SearchController {
 
     @GetMapping
     public ResponseEntity<String> sayHello() {
-        return ResponseEntity.ok("Hello World from Reports. Random result: " + randomGenerator.generateRandomNumber());
+        return ResponseEntity.ok("Hello World from Search. Random result: " + randomGenerator.generateRandomNumber());
     }
 }

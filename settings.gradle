@@ -5,4 +5,5 @@ include 'booking-service'
 include 'notification-service'
 include 'payment-service'
 include 'report-service'
+include 'booking-gateway'
 

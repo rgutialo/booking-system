@@ -2,6 +2,11 @@ plugins {
     id 'com.palantir.docker' version '0.36.0'
 }
 
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}
+
+
 docker {
     name "${dockerRepoName}/authentication-service:${version}"
     files tasks.bootJar.outputs.files

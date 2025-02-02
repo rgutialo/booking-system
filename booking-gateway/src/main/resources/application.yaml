@@ -1,0 +1,36 @@
+server:
+  port: 9080  # The gateway runs on this port
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: authentication-service
+          uri: http://authentication-service:8080  # Authentication service
+          predicates:
+            - Path=/authentication/**
+
+        - id: booking-service
+          uri: http://booking-service:8081  # Booking service
+          predicates:
+            - Path=/booking/**
+
+        - id: notification-service
+          uri: http://notification-service:8082  # Notification service
+          predicates:
+            - Path=/notifications/**
+
+        - id: payment-service
+          uri: http://payment-service:8083  # Payment service
+          predicates:
+            - Path=/payments/**
+
+        - id: report-service
+          uri: http://report-service:8084  # Report service
+          predicates:
+            - Path=/reports/**
+
+        - id: search-service
+          uri: http://search-service:8085  # Search service
+          predicates:
+            - Path=/search/**

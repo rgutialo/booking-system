@@ -19,7 +19,7 @@ test {
 }
 
 docker {
-    name "booking-system/notification-service:${version}"
+    name "${dockerRepoName}/notification-service:${version}"
     files tasks.bootJar.outputs.files
     buildArgs(['JAR_FILE': tasks.bootJar.archiveFileName.get()])
 }

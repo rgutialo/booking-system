@@ -3,7 +3,7 @@ plugins {
 }
 
 docker {
-    name "booking-system/report-service:${version}"
+    name "${dockerRepoName}/report-service:${version}"
     files tasks.bootJar.outputs.files
     buildArgs(['JAR_FILE': tasks.bootJar.archiveFileName.get()])
 }

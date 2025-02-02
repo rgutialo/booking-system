@@ -1,0 +1,6 @@
+services:
+  authentication-service:
+    container_name: 'authentication-service'
+    image: @DOCKER_REPOSITORY_NAME@/authentication-service:@DOCKER_TAG@
+    ports:
+      - "8080:8080"

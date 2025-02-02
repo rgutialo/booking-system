@@ -1,0 +1,64 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+tasks.register('updateDockerComposeFile') {
+    doLast {
+        copy {
+            from(projectDir) {
+                if (project.hasProperty('prod') && prod) {
+                    include "docker-compose.prod.yml.template"
+                } else {
+                    include "docker-compose.yml.template"
+                }
+            }
+            into(projectDir)
+            rename { fileName ->
+                "docker-compose.yml"
+            }
+            filter(ReplaceTokens, tokens: [
+                    'DOCKER_REPOSITORY_NAME': dockerRepoName,
+                    'DOCKER_TAG'            : projectVersion
+            ])
+        }
+    }
+}
+
+tasks.register("dockerComposeUp", Exec) {
+    if (project.hasProperty('dockerComposeArgs')) {
+        commandLine("docker", "compose", "up", dockerComposeArgs)
+    } else {
+        commandLine("docker", "compose", "up", "-d")
+    }
+}
+
+tasks.register('buildDockerCompose') {
+    dependsOn 'web:bootBuildImage'
+    dependsOn updateDockerComposeFile
+}
+
+tasks.register('dockerComposeDown') {
+    dependsOn updateDockerComposeFile
+    doLast {
+        exec {
+            if (project.hasProperty('dockerComposeArgs')) {
+                commandLine 'docker-compose', 'down', dockerComposeArgs
+            } else {
+                commandLine 'docker-compose', 'down'
+            }
+        }
+    }
+}
+
+tasks.register('dockerCompose') {
+    dependsOn updateDockerComposeFile
+    doLast {
+        if (project.hasProperty('dockerComposeArgs')) {
+            def commandToExecute = ['docker-compose']
+            commandToExecute.addAll(dockerComposeArgs.split())
+            exec {
+                commandLine(commandToExecute)
+            }
+        } else {
+            throw new InvalidUserDataException('You must provide dockerComposeArgs property, e.g: `./gradlew dockerCompose -PdockerComposeArgs="-d"`')
+        }
+    }
+}

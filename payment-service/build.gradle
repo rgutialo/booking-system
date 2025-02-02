@@ -19,7 +19,7 @@ test {
 }
 
 docker {
-    name "booking-system/payment-service:${version}"
+    name "${dockerRepoName}/payment-service:${version}"
     files tasks.bootJar.outputs.files
     buildArgs(['JAR_FILE': tasks.bootJar.archiveFileName.get()])
 }

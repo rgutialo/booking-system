@@ -1,2 +1,9 @@
 server:
   port: 8080
+
+keycloak:
+  auth-server-url: http://keycloack:8080
+  #auth-server-url: http://localhost:8091
+  realm: my-realm
+  client-id: booking-client
+  client-secret: OreAVkDkW2WaVltScPlDOQy7dJENQJH1

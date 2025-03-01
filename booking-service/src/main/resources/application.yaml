@@ -1,2 +1,13 @@
 server:
   port: 8081
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://keycloack:8080/realms/my-realm
+          #issuer-uri: http://localhost:8091/realms/my-realm
+  kafka:
+    bootstrap-servers: localhost:9092
+    bookingTopic: bookingRequest

@@ -76,11 +76,18 @@ services:
       - "8080:8080"
     depends_on:
       - keycloack
+    environment:
+      - KEYCLOAK_AUTH_SERVER_URL=http://keycloack:8080
+      - KEYCLOAK_REALM=my-realm
+      - KEYCLOAK_CLIENT_ID=booking-client
+      - KEYCLOAK_CLIENT_SECRET=OreAVkDkW2WaVltScPlDOQy7dJENQJH1
   booking-service:
     container_name: 'booking-service'
     image: @DOCKER_REPOSITORY_NAME@/booking-service:@DOCKER_TAG@
     ports:
       - "8081:8081"
+    environment:
+      - KEYCLOAK_ISSUER_URI=http://keycloack:8080/realms/my-realm
   notification-service:
     container_name: 'notification-service'
     image: @DOCKER_REPOSITORY_NAME@/notification-service:@DOCKER_TAG@

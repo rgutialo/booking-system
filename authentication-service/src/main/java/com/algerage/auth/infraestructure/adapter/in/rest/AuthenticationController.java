@@ -4,6 +4,7 @@ import com.algerage.auth.application.port.in.RandomGeneratorPort;
 import com.algerage.auth.infraestructure.adapter.in.rest.dto.v1.LoginRequest;
 import com.algerage.auth.infraestructure.config.KeycloakConfigProperties;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -16,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping(value = "/authentication")
 @AllArgsConstructor
+@Slf4j
 public class AuthenticationController {
 
     private final RandomGeneratorPort randomGenerator;
@@ -33,7 +35,7 @@ public class AuthenticationController {
         String tokenUrl = keycloakProperties.getAuthServerUrl() +
                 "/realms/" + keycloakProperties.getRealm() +
                 "/protocol/openid-connect/token";
-
+        log.info("Token URL: {}", tokenUrl);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 

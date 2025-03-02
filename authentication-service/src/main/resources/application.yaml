@@ -2,9 +2,9 @@ server:
   port: 8080
 
 keycloak:
-  auth-server-url: ${KEYCLOAK_AUTH_SERVER_URL:http://localhost:8091}
+  auth-server-url: ${KEYCLOAK_AUTH_SERVER_URL:http://localhost:8092}
   #container --> auth-server-url: http://keycloack:8080
-  #locally --> auth-server-url: http://localhost:8091
+  #locally --> auth-server-url: http://localhost:8092
   realm: ${KEYCLOAK_REALM:my-realm}
   client-id: ${KEYCLOAK_CLIENT_ID:booking-client}
   client-secret: ${KEYCLOAK_CLIENT_SECRET:OreAVkDkW2WaVltScPlDOQy7dJENQJH1}

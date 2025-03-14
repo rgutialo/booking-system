@@ -25,10 +25,4 @@ public class BookingController {
     public ResponseEntity<String> sayHello() {
         return ResponseEntity.ok("Hello World from Booking. Random result: " + randomGenerator.generateRandomNumber());
     }
-
-    @PostMapping
-    public ResponseEntity<Booking> bookRequest(@RequestBody final BookingRequest bookingRequest) {
-        Booking modelFromRequest = bookingMapper.createModelFromRequest(bookingRequest);
-        return ResponseEntity.ok().body(modelFromRequest);
-    }
 }

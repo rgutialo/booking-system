@@ -11,4 +11,10 @@ spring:
           #locally --> issuer-uri: http://localhost:8092/realms/my-realm
   kafka:
     bootstrap-servers: localhost:9092
-    bookingTopic: bookingRequest
+    bookingTopic: booking
+    consumer:
+      group-id: booking-service
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.algerage.search.domain.model.BookingMessage"

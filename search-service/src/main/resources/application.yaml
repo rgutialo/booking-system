@@ -1,2 +1,16 @@
 server:
   port: 8085
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8092/realms/my-realm}
+          #container --> issuer-uri: http://keycloack:8080/realms/my-realm
+          #locally --> issuer-uri: http://localhost:8092/realms/my-realm
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer

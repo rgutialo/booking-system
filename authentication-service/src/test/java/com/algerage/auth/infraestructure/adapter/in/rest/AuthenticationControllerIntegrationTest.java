@@ -1,22 +1,18 @@
 package com.algerage.auth.infraestructure.adapter.in.rest;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import com.algerage.auth.application.port.in.RandomGeneratorPort;
-import org.junit.jupiter.api.BeforeEach;
+import com.algerage.auth.infraestructure.config.KeycloakConfigProperties;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.client.RestTemplate;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(
         controllers = {
@@ -30,6 +26,12 @@ public class AuthenticationControllerIntegrationTest {
 
     @MockitoBean
     private RandomGeneratorPort randomGeneratorPort;
+
+    @MockitoBean
+    private RestTemplate restTemplate;
+
+    @MockitoBean
+    private KeycloakConfigProperties keycloakConfigProperties;
 
     @Test
     void testHelloWorld() throws Exception {

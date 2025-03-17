@@ -30,7 +30,7 @@ services:
       KAFKA_CLUSTER_ID: test-kafka-cluster
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_INTERNAL://kafka:29092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
@@ -122,6 +122,7 @@ services:
       - redis
     environment:
       - KEYCLOAK_ISSUER_URI=http://keycloack:8080/realms/my-realm
+      - KAFKA_HOST=http://kafka:9092
 
   notification-service:
     container_name: 'notification-service'
@@ -146,6 +147,10 @@ services:
     image: @DOCKER_REPOSITORY_NAME@/search-service:@DOCKER_TAG@
     ports:
       - "8085:8085"
+    environment:
+      - KEYCLOAK_ISSUER_URI=http://keycloack:8080/realms/my-realm
+      - KAFKA_HOST=http://kafka:9092
+
 
   booking-gateway:
       container_name: 'booking-gateway'

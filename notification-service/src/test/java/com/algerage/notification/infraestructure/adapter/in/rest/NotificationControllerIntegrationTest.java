@@ -34,7 +34,7 @@ public class NotificationControllerIntegrationTest {
     @Test
     void testHelloWorld() throws Exception {
         Mockito.when(randomGeneratorPort.generateRandomNumber()).thenReturn(1);
-        mockMvc.perform(get("/notification").param("client", "testClient"))
+        mockMvc.perform(get("/notifications").param("client", "testClient"))
                 .andExpect(status().isOk());
     }
 }

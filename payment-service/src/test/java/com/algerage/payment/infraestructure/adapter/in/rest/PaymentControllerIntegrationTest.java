@@ -34,7 +34,7 @@ public class PaymentControllerIntegrationTest {
     @Test
     void testHelloWorld() throws Exception {
         Mockito.when(randomGeneratorPort.generateRandomNumber()).thenReturn(1);
-        mockMvc.perform(get("/payment").param("client", "testClient"))
+        mockMvc.perform(get("/payments").param("client", "testClient"))
                 .andExpect(status().isOk());
     }
 }

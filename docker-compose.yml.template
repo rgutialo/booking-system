@@ -122,6 +122,7 @@ services:
       - redis
     environment:
       - KEYCLOAK_ISSUER_URI=http://keycloack:8080/realms/my-realm
+      - KAFKA_HOST=http://kafka:9092
 
   notification-service:
     container_name: 'notification-service'
@@ -146,6 +147,10 @@ services:
     image: @DOCKER_REPOSITORY_NAME@/search-service:@DOCKER_TAG@
     ports:
       - "8085:8085"
+    environment:
+      - KEYCLOAK_ISSUER_URI=http://keycloack:8080/realms/my-realm
+      - KAFKA_HOST=http://kafka:9092
+
 
   booking-gateway:
       container_name: 'booking-gateway'

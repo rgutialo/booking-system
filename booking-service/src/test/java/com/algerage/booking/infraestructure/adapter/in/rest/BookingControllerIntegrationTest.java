@@ -1,11 +1,13 @@
 package com.algerage.booking.infraestructure.adapter.in.rest;
 
 import com.algerage.booking.application.port.in.RandomGeneratorPort;
+import com.algerage.booking.config.NoSecurityConfig;
 import com.algerage.booking.infraestructure.adapter.in.mappers.BookingMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -18,6 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
                 RandomGeneratorPort.class,
                 BookingMapper.class
         })
+@Import(NoSecurityConfig.class)
 public class BookingControllerIntegrationTest {
 
     @Autowired

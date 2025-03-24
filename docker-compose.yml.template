@@ -30,9 +30,10 @@ services:
       KAFKA_CLUSTER_ID: test-kafka-cluster
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_INTERNAL://kafka:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_LOG_RETENTION_MS: 300000
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
     ports:
       - "9092:9092"
@@ -100,6 +101,15 @@ services:
     volumes:
           - C:\Users\charl\IdeaProjects\booking-system\kui\redis:/data
 
+  redisinsight:
+    image: redislabs/redisinsight:latest
+    container_name: redisinsight
+    ports:
+        - "8001:5540"
+    restart: always
+    depends_on:
+        - redis
+
   authentication-service:
     container_name: 'authentication-service'
     image: @DOCKER_REPOSITORY_NAME@/authentication-service:@DOCKER_TAG@
@@ -123,6 +133,7 @@ services:
     environment:
       - KEYCLOAK_ISSUER_URI=http://keycloack:8080/realms/my-realm
       - KAFKA_HOST=http://kafka:9092
+      - REDIS_HOST=redis://redis:6379
 
   notification-service:
     container_name: 'notification-service'
@@ -135,6 +146,8 @@ services:
     image: @DOCKER_REPOSITORY_NAME@/payment-service:@DOCKER_TAG@
     ports:
       - "8083:8083"
+    environment:
+      - KAFKA_HOST=http://kafka:9092
 
   report-service:
     container_name: 'report-service'

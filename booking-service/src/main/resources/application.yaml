@@ -18,3 +18,9 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: "com.algerage.search.domain.model.BookingMessage"
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+redisson:
+  address: ${REDIS_HOST:redis://localhost:6379}

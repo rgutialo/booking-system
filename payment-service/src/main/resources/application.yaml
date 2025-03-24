@@ -1,2 +1,13 @@
 server:
   port: 8083
+
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_HOST:http://localhost:9092}
+    bookingTopic: payment
+    consumer:
+      group-id: payment-service
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.algerage.booking.domain.model.BookingMessage"

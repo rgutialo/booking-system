@@ -5,4 +5,6 @@ import com.algerage.booking.domain.model.BookingMessage;
 public interface BookingConsumerPort {
 
     void consumeBooking(final BookingMessage message);
+
+     void manageIncomingBooking(final BookingMessage message);
 }

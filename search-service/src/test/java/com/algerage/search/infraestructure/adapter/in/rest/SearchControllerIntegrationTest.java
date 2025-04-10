@@ -1,7 +1,7 @@
 package com.algerage.search.infraestructure.adapter.in.rest;
 
 import com.algerage.search.application.port.in.RandomGeneratorPort;
-import com.algerage.search.application.service.RequestBookingService;
+import com.algerage.search.infraestructure.adapter.out.RequestBookingService;
 import com.algerage.search.config.NoSecurityConfig;
 import com.algerage.search.infraestructure.mappers.BookingMapper;
 import org.junit.jupiter.api.Test;

@@ -13,6 +13,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    implementation 'org.springframework:spring-webflux:7.0.0-M3'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:3.4.4'
     implementation 'org.springframework.kafka:spring-kafka:3.3.2'
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'

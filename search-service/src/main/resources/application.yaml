@@ -21,3 +21,6 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: "com.algerage.booking.domain.model.BookingMessageAck"
+
+booking-service:
+  url: ${BOOKING_SERVICE_URL:http://localhost:8081}

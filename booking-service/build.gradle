@@ -13,6 +13,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.h2database:h2'
     implementation 'org.springframework.kafka:spring-kafka:3.3.2'
     implementation 'org.redisson:redisson-spring-boot-starter:3.45.0'
     testImplementation platform('org.junit:junit-bom:5.10.0')

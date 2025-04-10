@@ -163,6 +163,7 @@ services:
     environment:
       - KEYCLOAK_ISSUER_URI=http://keycloack:8080/realms/my-realm
       - KAFKA_HOST=http://kafka:9092
+      - BOOKING_SERVICE_URL=http://booking-service:8081
 
 
   booking-gateway:

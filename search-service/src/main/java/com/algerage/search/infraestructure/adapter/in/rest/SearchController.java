@@ -1,7 +1,7 @@
 package com.algerage.search.infraestructure.adapter.in.rest;
 
 import com.algerage.search.application.port.in.RandomGeneratorPort;
-import com.algerage.search.application.service.RequestBookingService;
+import com.algerage.search.infraestructure.adapter.out.RequestBookingService;
 import com.algerage.search.domain.model.BookingMessage;
 import com.algerage.search.infraestructure.adapter.in.dto.BookingRequest;
 import com.algerage.search.infraestructure.adapter.in.dto.BookingResponse;
@@ -31,9 +31,17 @@ public class SearchController {
 
     @PostMapping
     @PreAuthorize("hasRole('user')")
-    public ResponseEntity<BookingResponse> bookRequest(@RequestBody final BookingRequest bookingRequest) {
+    public ResponseEntity<BookingResponse> bookRequestExample(@RequestBody final BookingRequest bookingRequest) {
         BookingMessage modelFromRequest = bookingMapper.createModelFromRequest(bookingRequest);
         requestBookingService.requestBooking(modelFromRequest);
+        return ResponseEntity.accepted().body(null);
+    }
+
+    @PostMapping("/request")
+    @PreAuthorize("hasRole('user')")
+    public ResponseEntity<String> bookRequest(@RequestBody final BookingRequest bookingRequest) {
+        BookingMessage modelFromRequest = bookingMapper.createModelFromRequest(bookingRequest);
+        requestBookingService.requestRealBooking(modelFromRequest);
         return ResponseEntity.accepted().body(null);
     }
 }
